@@ -23,6 +23,27 @@
 		/>
 		<title>Вход/Авторизация</title>
 		<link rel="stylesheet" href="/css/reg.css">
+		<style>
+			html, body {
+    height: 100%;
+    background : linear-gradient(45deg, rgb(69, 127, 215), pink);
+}
+form {
+    transform: translateY(0px);
+    filter: drop-shadow(1px 2px 4px rgba(171, 5, 183, 0.338));
+}
+form:focus-within {
+    transform: translateY(-4px);
+    filter: drop-shadow(1px 2px 4px rgba(219, 36, 8, 0.45));
+}
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+#wrongUser {
+    visibility: hidden;
+    color: brown;
+}
+		</style>
 	</head>
 	<body>
 		<header>
@@ -101,5 +122,29 @@
 			crossorigin="anonymous"
 		></script>
 		<script src="/scripts/reg.js"></script>
+		<script>
+			    document.getElementById("submit").addEventListener("click", function (e) {
+        e.preventDefault();
+       // получаем данные формы
+       let registerForm = document.forms["registerForm"];
+       let email = registerForm.elements["email"].value;
+       let pass = registerForm.elements["pass"].value;
+       // сериализуем данные в json
+       let user = JSON.stringify({email: email, pass: pass});
+       let request = new XMLHttpRequest();
+       // посылаем запрос на адрес "/user"
+        request.open("POST", "/user");
+        request.setRequestHeader("Content-Type", "application/json");
+        request.addEventListener("load", function () {
+            let answer = JSON.parse(request.response);
+            if (answer.validUser) {
+                location.href='/cakes'
+            } else {
+                document.getElementById('wrongUser').style.visibility = 'visible'
+            }
+        });
+        request.send(user);
+    });
+		</script>
 	</body>
 </html>
