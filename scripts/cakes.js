@@ -14,7 +14,7 @@ let colors = {
         float: 1.75,
         glow: 0,
         imageUrl: [
-            "/static/img/cake.png",
+            "/img/cake.png",
         ],
         maxAlpha: 2,
         maxSize: 100,

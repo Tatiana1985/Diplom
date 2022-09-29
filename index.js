@@ -5,7 +5,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-app.use("/static", express.static(__dirname));
+app.use("/", express.static(__dirname));
 // создаем парсер для данных в формате json
 const jsonParser = express.json();
 
