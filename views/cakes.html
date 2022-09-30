@@ -11,6 +11,35 @@
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
         crossorigin="anonymous"
     />
+    <style>
+
+html, body {
+    height: 100%;
+    background : linear-gradient(45deg, rgb(69, 127, 215), pink);
+}
+.falling {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* background-image: url("/upload/sparticles/photo-bg.jpg"); */
+    background-size: contain;
+    background-position: center center;
+    margin: 10px 0 20px 0;
+}
+.falling canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    mix-blend-mode: normal;
+}
+.falling h2 {
+    padding: 40px;
+    background: rgb(212, 6, 6);
+    position: relative;
+}
+    </style>
     <script src="https://atuin.ru/demo/js/sparticles.min.js"></script>
     <link rel="stylesheet" href="/css/cakes.css">
 </head>
@@ -56,5 +85,46 @@
     <h1>Список тортов, капкейков и пироженки будут доступны позже</h1>
     <div class="falling" ></div>
     <script src="/scripts/cakes.js"></script>
+    <script>
+        let colors = {
+    color1: "rgba(255,255,255, 0.3)",
+    color2: "rgba(222,184,142,0.3)",
+    color3: "rgba(232,248,255,0.3)",
+    color4: "rgba(135,143,145,0.3)"
+    };
+    let options = {
+        alphaSpeed: 10,
+        alphaVariance: 1,
+        color: [colors.color1, colors.color2, colors.color3, colors.color4],
+        composition: "source-over",
+        count: 250,
+        direction: 161,
+        float: 1.75,
+        glow: 0,
+        imageUrl: [
+            "https://img.lovepik.com/element/45011/9641.png_300.png",
+        ],
+        maxAlpha: 2,
+        maxSize: 100,
+        minAlpha: -0.2,
+        minSize: 4,
+        parallax: 1.75,
+        rotation: 0.5,
+        shape: "image",
+        speed: 3,
+        style: "fill",
+        twinkle: false,
+        xVariance: 10,
+        yVariance: 0,
+    };
+    window.onload = function() {
+        initSparticles();
+    }
+    window.initSparticles = function() {
+        var $main = document.querySelector('.falling');
+        window.mySparticles = new sparticles.Sparticles($main, options);
+    };
+
+    </script>
 </body>
 </html>
